@@ -80,7 +80,7 @@ Plan is to build your very own docker image, run it and then explore debugging i
 1. Run it locally 
 
 ```python
-python -m http.server 1984
+python -m SimpleHTTPServer 1984
 ```
 
 ---
