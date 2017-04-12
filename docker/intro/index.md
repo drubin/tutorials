@@ -48,7 +48,7 @@ ADD ubuntu-trusty-core-cloudimg-amd64-root.tar.gz /
 
 Your App 
 ```Dockerfile
-FROM ubuntu:16.04
+FROM ubuntu:14.04
 ...
 ```
 ---
@@ -70,17 +70,17 @@ Plan is to build your very own docker image, run it and then explore debugging i
 
 ### The code 
 
-1. Lets all create a folder I am going to call it **docker-tut**
-1. Lets create a file called **index.html** and fill it with 
+1. Create a folder called **docker-tut**
+1. Create a file called **index.html** with  
 
 ```html
 <h1>Hello World.</h1>
 ```
 
-1. Getting running it locally 
+1. Run it locally 
 
 ```python
-python -m SimpleHTTPServer 1984
+python -m http.server 1984
 ```
 
 ---
@@ -90,7 +90,7 @@ python -m SimpleHTTPServer 1984
 Create a file called **Dockerfile** with the following contents
 
 ```Dockerfile
-FROM python:2
+FROM python:alpine
 ```
 
 Next we are going to build the image
@@ -109,11 +109,11 @@ docker build -t docker-tut .
 Lets adjust your docker image to include some useful bits
 
 ```Dockerfile
-FROM python:2
+FROM python:alpine
 WORKDIR /app/
 ADD index.html /app/
 EXPOSE 1984
-CMD [ "python", "-m", "SimpleHTTPServer", "1984"]
+CMD [ "python", "-m", "http.server", "1984"]
 ```
 
 
@@ -163,7 +163,7 @@ docker ps
 ```
 ```
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
-423e3f0bbe91        docker-tut          "python -m SimpleH..."   2 minutes ago       Up 2 minutes        0.0.0.0:1984->1984/tcp   fervent_bardeen
+423e3f0bbe91        docker-tut          "python -m http..."   2 minutes ago       Up 2 minutes        0.0.0.0:1984->1984/tcp   fervent_bardeen
 ```
 
 --
